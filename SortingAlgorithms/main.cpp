@@ -33,7 +33,7 @@ int main()
 	int n;
 
 	int *originalUnsortedArray = CreateRandomArray(&n);
-	Benchmark(&RangeSort, originalUnsortedArray, n, "RangeSort");
+	Benchmark(&CountSort, originalUnsortedArray, n, "RangeSort");
 	Benchmark(&QuickSort, originalUnsortedArray, n, "QuickSort");
 	Benchmark(&BubbleSort, originalUnsortedArray, n, "BubbleSort");
 	system("pause");

@@ -66,7 +66,7 @@ void FindMinMax(int *p, int size, int*min, int*max)
 		if (p[i] > *max) *max = p[i];
 	}
 }
-void RangeSort(int *p, int size)
+void CountSort(int *p, int size)
 {
 	int min, max;
 	FindMinMax(p,size,&min,&max);
