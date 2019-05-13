@@ -17,13 +17,12 @@ int Partition(int * v, int lo, int hi)
 	int key = v[(lo + hi) / 2];
 	do 
 	{
-		while (v[lo] < key) lo++;
-		while (v[hi] > key) hi--;
-		if (lo <= hi) {
+		while (v[lo] <= key) lo++;
+		while (v[hi] >= key) hi--;
+		if (lo < hi) {
 			Swap(&v[lo], &v[hi]);
-			lo++; hi--;
 		}
-	} while (lo <= hi);
+	} while (lo < hi);
 	return lo;
 }
 
@@ -56,7 +55,7 @@ void BubbleSort(int * v, int size)
 }
 #pragma endregion
 
-#pragma region RangeSort
+#pragma region CountSort
 void FindMinMax(int *p, int size, int*min, int*max) 
 {
 	*max = *min = *p;
@@ -81,6 +80,30 @@ void CountSort(int *p, int size)
 		{
 			p[j++] = i;
 		}
+	}
+}
+#pragma endregion
+
+#pragma region SelectionSort
+int FindMax(int* v, int size) {
+	int max = v[0];
+	int idx = 0;
+	for (int i = 1; i < size; i++) 
+	{
+		if (v[i] > max) 
+		{
+			max = v[i];
+			idx = i;
+		}
+	}
+	return idx;
+}
+void SelectionSort(int* v, int size)
+{
+	for (int i = 0; i < size; i++) 
+	{
+		int idx = FindMax(v, size-i);
+		Swap(&v[idx], &v[size -(i + 1)]);
 	}
 }
 #pragma endregion

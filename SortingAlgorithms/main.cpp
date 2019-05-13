@@ -4,7 +4,7 @@
 #include "Sorting.h"
 #include "HighOrderFunctions.h"
 
-constexpr int NumberOfElements = 1000000;
+constexpr int NumberOfElements = 4000;
 constexpr int MaxValue = 10000;
 int *CreateRandomArray(int *size)
 {
@@ -16,25 +16,20 @@ int *CreateRandomArray(int *size)
 	}
 	return array;
 }
+
 void Start() 
 {
 	srand(time(0));
 }
-void PrintArray(int *v, int n) 
-{
-	for (int i = 0; i < n; i++) 
-	{
-		std::cout <<  v[i] << "\t";
-	}
-}
+
 int main() 
 {
 	Start();
 	int n;
-
-	int *originalUnsortedArray = CreateRandomArray(&n);
+	int* originalUnsortedArray = CreateRandomArray(&n);
 	Benchmark(&CountSort, originalUnsortedArray, n, "RangeSort");
-	Benchmark(&QuickSort, originalUnsortedArray, n, "QuickSort");
+	// Benchmark(&QuickSort, originalUnsortedArray, n, "QuickSort");
 	Benchmark(&BubbleSort, originalUnsortedArray, n, "BubbleSort");
-	system("pause");
+	Benchmark(&SelectionSort, originalUnsortedArray, n, "SelectionSort");
+	scanf_s("x", 1);
 }

@@ -2,6 +2,7 @@
 #include <chrono>
 #include <string>
 #include <iostream>
+#include "HighOrderFunctions.h"
 int *CopyArray(int*v, int n)
 {
 	int *v1 = new int[n];
@@ -17,6 +18,30 @@ void Benchmark(void (*method) (int*,int), int* v, int n, std::string name)
 	std::chrono::high_resolution_clock::time_point start(std::chrono::high_resolution_clock::now());
 	(*method)(copy, n);
 	double time = (std::chrono::high_resolution_clock::now() - start).count() / 1000000.0;
-	std::cout << name << ":\t\t\t" << time << "ms\n";
+	if (IsSorted(copy, n)) 
+	{
+		std::cout << name << ":\t\t\t" << time << "ms\n";
+	}
+	else 
+	{
+		std::cout << name << ":\t\t\t failed\n";
+	}
+	//PrintArray(v, n);
 	delete copy;
+}
+void PrintArray(int* v, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << v[i] << "\t";
+	}
+}
+bool IsSorted(int* v, int size) 
+{
+	for (int i = 0; i < size - 1; i++) {
+		if (v[i] > v[i + 1]) {
+			return false;
+		}
+	}
+	return true;
 }
