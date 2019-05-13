@@ -31,5 +31,6 @@ int main()
 	// Benchmark(&QuickSort, originalUnsortedArray, n, "QuickSort");
 	Benchmark(&BubbleSort, originalUnsortedArray, n, "BubbleSort");
 	Benchmark(&SelectionSort, originalUnsortedArray, n, "SelectionSort");
+	Benchmark(&InsertSort, originalUnsortedArray,n, "InsertionSort");
 	scanf_s("x", 1);
 }

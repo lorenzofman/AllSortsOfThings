@@ -82,6 +82,19 @@ void CountSort(int *p, int size)
 		}
 	}
 }
+void InsertSort(int* v, int size)
+{
+	for (int i = 0; i < size; i++) 
+	{
+		int key = v[i];
+		int j = i;
+		while (j > 0 && key < v[j - 1]) 
+		{
+			v[j--] = v[j-1];
+		}
+		v[j] = key;
+	}
+}
 #pragma endregion
 
 #pragma region SelectionSort
