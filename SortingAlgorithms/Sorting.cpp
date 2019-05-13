@@ -17,11 +17,15 @@ int Partition(int * v, int lo, int hi)
 	int key = v[(lo + hi) / 2];
 	do 
 	{
-		while (v[lo] <= key) lo++;
-		while (v[hi] >= key) hi--;
-		if (lo < hi) {
-			Swap(&v[lo], &v[hi]);
+		while (v[lo] < key)
+		{
+			lo++;
 		}
+		while (v[hi] > key) 
+		{ 
+			hi--;
+		}
+		Swap(&v[lo], &v[hi]);
 	} while (lo < hi);
 	return lo;
 }
@@ -143,4 +147,44 @@ void ShellSort(int* v, int size)
 		}
 	}
 }
+#pragma endregion
+
+#pragma region HeapSort
+
+void Heapify(int* v, int parent, int size)
+{
+	int leftChildren = parent * 2 + 1;
+	int rightChildren = parent * 2 + 2;
+	int greater = parent;
+	if (leftChildren < size && v[leftChildren] > v[greater])
+	{
+		greater = leftChildren;
+	}
+	if (rightChildren < size && v[rightChildren] > v[greater])
+	{
+		greater = rightChildren;
+	}
+	if (greater == parent)
+		return;
+	Swap(&v[parent], &v[greater]);
+	Heapify(v, greater, size);
+}
+void MaxHeap(int *v, int size) 
+{
+	for (int i = size / 2 - 1; i >= 0; i--)
+	{
+		Heapify(v, i, size);
+	}
+}
+void HeapSort(int* v, int size)
+{
+	MaxHeap(v, size);
+	for (int i = size - 1; i > 0; i--)
+	{
+		Swap(&v[0], &v[i]);
+		Heapify(v, 0, i);
+	}
+}
+
+
 #pragma endregion
