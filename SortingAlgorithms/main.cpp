@@ -5,7 +5,7 @@
 #include "HighOrderFunctions.h"
 
 constexpr int NumberOfElements = 4000;
-constexpr int MaxValue = 10000;
+constexpr int MaxValue = 100000;
 int *CreateRandomArray(int *size)
 {
 	*size = NumberOfElements;
@@ -31,6 +31,7 @@ int main()
 	// Benchmark(&QuickSort, originalUnsortedArray, n, "QuickSort");
 	Benchmark(&BubbleSort, originalUnsortedArray, n, "BubbleSort");
 	Benchmark(&SelectionSort, originalUnsortedArray, n, "SelectionSort");
-	Benchmark(&InsertSort, originalUnsortedArray,n, "InsertionSort");
+	Benchmark(&InsertionSort, originalUnsortedArray,n, "InsertionSort");
+	Benchmark(&ShellSort, originalUnsortedArray,n, "ShellSort");
 	scanf_s("x", 1);
 }

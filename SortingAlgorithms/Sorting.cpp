@@ -82,17 +82,21 @@ void CountSort(int *p, int size)
 		}
 	}
 }
-void InsertSort(int* v, int size)
+#pragma endregion
+
+#pragma region InsertionSort
+void InsertionSort(int* v, int size)
 {
-	for (int i = 0; i < size; i++) 
+	for (int i = 1; i < size; i++) 
 	{
 		int key = v[i];
-		int j = i;
-		while (j > 0 && key < v[j - 1]) 
+		int j = i - 1;
+		while (j >= 0 && key < v[j]) 
 		{
-			v[j--] = v[j-1];
+			v[j+1] = v[j];
+			j--;
 		}
-		v[j] = key;
+		v[j+1] = key;
 	}
 }
 #pragma endregion
@@ -117,6 +121,26 @@ void SelectionSort(int* v, int size)
 	{
 		int idx = FindMax(v, size-i);
 		Swap(&v[idx], &v[size -(i + 1)]);
+	}
+}
+#pragma endregion
+
+#pragma region ShellSort
+void ShellSort(int* v, int size)
+{
+	for (int range = size / 2; range > 0; range /= 2) 
+	{
+		for (int i = range; i < size; i++) 
+		{
+			int key = v[i];
+			int j = i - range;
+			while (j >= 0 && key < v[j]) 
+			{
+				v[j + range] = v[j];
+				j -= range;
+			}
+			v[j + range] = key;
+		}
 	}
 }
 #pragma endregion
