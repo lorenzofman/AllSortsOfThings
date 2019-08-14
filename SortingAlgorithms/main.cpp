@@ -4,7 +4,7 @@
 #include "Sorting.h"
 #include "HighOrderFunctions.h"
 
-constexpr int NumberOfElements = 100000;
+constexpr int NumberOfElements = 10;
 int *CreateShuffledArray(int *size)
 {
 	*size = NumberOfElements;
@@ -34,8 +34,8 @@ int main()
 	int n;
 	int* originalUnsortedArray = CreateShuffledArray(&n);
 	Benchmark(&CountSort, originalUnsortedArray, n, "RangeSort");
-	Benchmark(&QuickSort, originalUnsortedArray, n, "QuickSort");
 	Benchmark(&BubbleSort, originalUnsortedArray, n, "BubbleSort");
+	Benchmark(&QuickSort, originalUnsortedArray, n, "QuickSort");
 	Benchmark(&SelectionSort, originalUnsortedArray, n, "SelectionSort");
 	Benchmark(&InsertionSort, originalUnsortedArray,n, "InsertionSort");
 	Benchmark(&ShellSort, originalUnsortedArray,n, "ShellSort");

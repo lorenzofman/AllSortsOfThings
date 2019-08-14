@@ -1,4 +1,5 @@
 #include "Sorting.h"
+#include <stdlib.h>
 #pragma region Common
 
 void Swap(int *a, int *b) 
@@ -12,31 +13,46 @@ void Swap(int *a, int *b)
 
 #pragma region QuickSort
 
-int Partition(int * v, int lo, int hi) 
+struct PartitionRange 
+{
+	int lo;
+	int hi;
+	PartitionRange(int lo, int hi)
+	{
+		this->lo = lo;
+		this->hi = hi;
+	}
+};
+PartitionRange* Partition(int* v, int lo, int hi)
 {
 	int key = v[(lo + hi) / 2];
-	do 
+	while (lo <= hi)
 	{
 		while (v[lo] < key)
 		{
 			lo++;
 		}
-		while (v[hi] > key) 
-		{ 
+		while (v[hi] > key)
+		{
 			hi--;
 		}
-		Swap(&v[lo], &v[hi]);
-	} while (lo < hi);
-	return lo;
+		if (lo <= hi)
+		{
+			Swap(&v[lo], &v[hi]);
+			lo++;
+			hi--;
+		}
+	}
+	return new PartitionRange(hi, lo);
 }
-
 void QuickSort(int * v, int lo, int hi)
 {
 	if (lo >= hi)
 		return;
-	int pivotIdx = Partition(v, lo, hi);
-	QuickSort(v, lo , pivotIdx - 1);
-	QuickSort(v, pivotIdx + 1, hi);
+	PartitionRange *pivotIdx = Partition(v, lo, hi);
+	QuickSort(v, 0 , pivotIdx->lo);
+	QuickSort(v, pivotIdx->hi, hi);
+	delete pivotIdx;
 }
 
 void QuickSort(int * v, int size)

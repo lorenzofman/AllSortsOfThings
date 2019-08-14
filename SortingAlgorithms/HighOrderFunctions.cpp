@@ -38,7 +38,7 @@ void PrintArray(int* v, int n)
 }
 bool IsSorted(int* v, int size) 
 {
-	for (int i = 0; i < size - 1; i++) {
+	for (int i = 0; i < size - 2; i++) {
 		if (v[i] > v[i + 1]) {
 			return false;
 		}
